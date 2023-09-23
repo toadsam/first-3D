@@ -1,22 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public float speed;
+    public GameObject[] weapons;
+    public bool[] hasWeapons;
+    public GameObject[] grenades; //공전하는 물체를 컨트롤하기 위해 배열변수 생성
+    public int hasGrenades;
+
+    public int ammo;
+    public int coin;
+    public int health;
+    
+
+    public int maxammo;
+    public int maxcoin;
+    public int maxhealth;
+    public int maxhasGrenades;
+
     float hAxis;
     float vAxis;
     bool wDown;
     bool jDowm;
+    bool iDown; //무기 장착관련 메서드
+    bool sDown1;  //무기 키를 받는 메서드
+    bool sDown2;
+    bool sDown3;
 
     bool isJump;
     bool isDodge;
+    bool isSwap; // 교체시간을 만들기 위한 플래그 로직 작성
 
     Vector3 moveVec;
     Vector3 dodgeVec;
     Animator anim;
     Rigidbody rigid;
+
+    GameObject nearObject;
+    GameObject equipWeapon;
+    int equipWeaponIndex = -1; //망치 번호가 0이기 때문에 0으로시작하면 초기 조건에서 걸림
     // Start is called before the first frame update
     private void Awake()
     {
@@ -35,6 +61,8 @@ public class Player : MonoBehaviour
         Turn();      
         Jump();
         Dodge();
+        Interation();
+        Swap();
     }
 
     void GetInput()  //방향키 받아오는 메서드
@@ -43,6 +71,12 @@ public class Player : MonoBehaviour
         vAxis = Input.GetAxisRaw("Vertical");
         wDown = Input.GetButton("Walk");
         jDowm = Input.GetButtonDown("Jump");
+        iDown = Input.GetButtonDown("Interation");
+        sDown1 = Input.GetButtonDown("Swap1");
+        sDown2 = Input.GetButtonDown("Swap2");
+        sDown3 = Input.GetButtonDown("Swap3");
+
+
     }
 
     void Move()
@@ -54,6 +88,10 @@ public class Player : MonoBehaviour
             moveVec = dodgeVec;
         }
 
+        if (isSwap)
+        {
+            moveVec = Vector3.zero; //만약 무기를 바꾸는 중이라면 움직임을 멈추도록한다.
+        }
         transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime; //다운상태면 속도를 줄이기
 
         anim.SetBool("isRun", moveVec != Vector3.zero);
@@ -67,7 +105,7 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        if(jDowm && moveVec == Vector3.zero && !isJump && !isDodge)  //점프를누르고, 가만이있고 점프중이 아니고 닫지가 아닐때
+        if(jDowm && moveVec == Vector3.zero && !isJump && !isDodge && !isSwap)  //점프를누르고, 가만이있고 점프중이 아니고 닫지가 아닐때
         {
             rigid.AddForce(Vector3.up * 15, ForceMode.Impulse);
             anim.SetBool("isJump", true);
@@ -76,9 +114,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Dodge()
+    void Dodge() //구르는거
     {
-        if (jDowm && moveVec != Vector3.zero && !isJump &&!isDodge)
+        if (jDowm && moveVec != Vector3.zero && !isJump &&!isDodge && !isSwap)
         {
             dodgeVec = moveVec;
             speed *= 2;          
@@ -105,5 +143,97 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)  //다른 콜라인더가 반응하면 호출
+    {
+        if(other.tag == "Item")
+        {
+            Item item = other.GetComponent<Item>();
+            switch (item.type)
+            {
+                case Item.Type.Ammo:
+                    ammo += item.value;
+                    if(ammo > maxammo)
+                        ammo = maxammo;
+                    break;
+                case Item.Type.Coin:
+                    coin += item.value;
+                    if (coin > maxcoin)
+                        coin = maxcoin;
+                    break;
+                case Item.Type.Heart:
+                    health += item.value;
+                    if (health > maxhealth)
+                        health = maxhealth;
+                    break;
+                case Item.Type.Grenade:
+                    grenades[hasGrenades].SetActive(true); 
+                    hasGrenades += item.value;
+                    if (hasGrenades > maxhasGrenades)
+                        hasGrenades = maxhasGrenades;
+                    break;                            
+            }
+            Destroy(other.gameObject);
+        }
+    }
+
+    void OnTriggerStay(Collider other)  //접촉하고 있는 콜라인더에 프레임당 한번 씩 호출
+    {
+        if (other.tag == "Weapon")
+            nearObject = other.gameObject;
+      
+    }
+     void OnTriggerExit(Collider other) //접촉을 중지하면 일어남
+    {
+        if(other.tag == "Weapon")
+            nearObject = null;
+    }
+
+    void Swap()
+    {
+        if (sDown1 && (!hasWeapons[0] || equipWeaponIndex == 0))
+            return;
+        if (sDown2 && (!hasWeapons[1] || equipWeaponIndex == 1))
+            return;
+        if (sDown3 && (!hasWeapons[2] || equipWeaponIndex == 2))
+            return;
+        int weaponIndex = -1;
+        if (sDown1) weaponIndex = 0;
+        if(sDown2) weaponIndex = 1;
+        if(sDown3) weaponIndex = 2;
+
+        if((sDown1 || sDown2 || sDown3) && !isJump &&  !isDodge)
+        {
+            if(equipWeapon != null)  //처음에 아이템 없는 경우 처리하기
+                equipWeapon.SetActive(false);
+
+            equipWeaponIndex = weaponIndex;
+            equipWeapon = weapons[weaponIndex];
+            equipWeapon.SetActive(true);
+
+            anim.SetTrigger("doSwap");
+            isSwap = true;
+
+            Invoke("SwapOut", 0.4f);
+        }
+    }
+    void SwapOut()
+    {      
+        isSwap = false;
+    }
+
+    void Interation()
+    {
+        if(iDown && nearObject != null && !isJump && !isDodge)  //상호작용의 조건이 되었다면
+        {
+            if(nearObject.tag == "Weapon")  //근데 무기면
+            {
+                Item item = nearObject.GetComponent<Item>();  
+                int weaponIndex = item.value;
+                hasWeapons[weaponIndex] = true;  //그 무기가 장작되었다는 것을 알려줌
+
+                Destroy(nearObject);
+            }
+        }
+    }
 
 }
