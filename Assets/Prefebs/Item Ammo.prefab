@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3296471816870130819}
   - component: {fileID: 6413693740094477308}
   - component: {fileID: 5106711758969088347}
+  - component: {fileID: 8683706784768297379}
   - component: {fileID: 7851539187497208042}
   m_Layer: 0
   m_Name: Item Ammo
@@ -118,7 +119,7 @@ Transform:
   - {fileID: 4881304711429927808}
   - {fileID: 7254229694615718510}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!114 &6413693740094477308
 MonoBehaviour:
@@ -157,10 +158,31 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &8683706784768297379
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2503094255407762765}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &7851539187497208042
 SphereCollider:
   m_ObjectHideFlags: 0
