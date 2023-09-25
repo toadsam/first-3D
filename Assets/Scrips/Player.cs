@@ -51,9 +51,11 @@ public class Player : MonoBehaviour
     int equipWeaponIndex = -1; //망치 번호가 0이기 때문에 0으로시작하면 초기 조건에서 걸림
     float fireDeley;// 공격대기시간
 
+    private RotateToMouse rotateToMouse; // 마우스 이동으로 카메라 회전
     // Start is called before the first frame update
     private void Awake()
     {
+        rotateToMouse = GetComponent<RotateToMouse>();  //카메라 속성가져오고
         anim = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
     }
@@ -73,6 +75,7 @@ public class Player : MonoBehaviour
         Dodge();
         Interation();
         Swap();
+        UpdateRotate();
     }
 
     void GetInput()  //방향키 받아오는 메서드
@@ -93,9 +96,13 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        moveVec = new Vector3(hAxis, 0, vAxis).normalized;  //똑같은 크기의 움직임을 위해서 노멀라이즈사용
-
-        if(isDodge)  //닷지상태면 방향을 바꿀 수 없게하기 위해서 만듬
+        Vector3 a = transform.right * hAxis;
+        Vector3 b = transform.forward * vAxis;
+        moveVec = (a + b).normalized * 2;
+        rigid.MovePosition(transform.position +  moveVec * Time.deltaTime);
+        //moveVec = new Vector3(hAxis, 0, vAxis).normalized;  //똑같은 크기의 움직임을 위해서 노멀라이즈사용
+        //moveVec = (hAxis + vAxis).
+        if (isDodge)  //닷지상태면 방향을 바꿀 수 없게하기 위해서 만듬
         {
             moveVec = dodgeVec;
         }
@@ -114,7 +121,7 @@ public class Player : MonoBehaviour
 
     void Turn()
     {
-        transform.LookAt(transform.position + moveVec); //플레이어가 가는 방향으로 방향설정
+       // transform.LookAt(transform.position + moveVec); //플레이어가 가는 방향으로 방향설정
 
         //마우스에 의한 회전
         if (fDown)
@@ -321,5 +328,11 @@ public class Player : MonoBehaviour
     {
         FreezeRotation();
         StopToWall();
+    }
+    void UpdateRotate()
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+        rotateToMouse.CalculateRotation(mouseX, mouseY);
     }
 }
