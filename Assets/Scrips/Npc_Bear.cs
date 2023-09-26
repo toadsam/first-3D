@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Progress;
 
 public enum AIState  //ai상태
 {
@@ -13,10 +14,19 @@ public enum AIState  //ai상태
     Fleeing
 }
 
+public enum AnimalType
+{
+    bear,
+    fox,
+    eagle,
+    dinosaur
+}
+
 
 public class NPC : MonoBehaviour//, IDamagable
 {
     public Player player;
+    public Transform respwanPos;
 
     [Header("Stats")]
     public int health;
@@ -52,7 +62,7 @@ public class NPC : MonoBehaviour//, IDamagable
 
     private void Awake()
     {
-       // player = GetComponent<Player>();
+        //player = GetComponent<Player>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();// meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -258,9 +268,10 @@ public class NPC : MonoBehaviour//, IDamagable
         }
         if (health <= 0)
         {
-          //  Respwan();
+            GameManager.bearNum = 0;
+            //Invoke("Respwan",4);
             Die();
-            //Respwan();
+           // Respwan();
         }
         StartCoroutine(DamageFlash());
     }
@@ -295,6 +306,8 @@ public class NPC : MonoBehaviour//, IDamagable
 
     void Respwan()
     {
-        Instantiate(gameObject, transform.position, player.transform.rotation);    
+      //  GameObject go = Instantiate(fieldItemPrefab, pos[i], Quaternion.identity);
+      //  go.GetComponent<FieldItems>().SetItem(itemDB[Random.Range(0, itemDB.Count)]);
+        Instantiate(this.gameObject, respwanPos.position, Quaternion.identity);    
     }
 }
