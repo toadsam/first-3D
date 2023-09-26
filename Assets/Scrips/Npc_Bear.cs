@@ -75,7 +75,7 @@ public class NPC : MonoBehaviour//, IDamagable
             case AIState.Idle: PassiveUpdate(); break;
             case AIState.Wandering: PassiveUpdate();  break;
             case AIState.Attacking: AttackingUpdate();  break;
-            case AIState.Fleeing: FleeingUpdate(); Debug.Log("느낌"); break;
+            case AIState.Fleeing: FleeingUpdate();  break;
         }
 
     }
@@ -138,7 +138,7 @@ public class NPC : MonoBehaviour//, IDamagable
 
         if (playerDistance < detectDistance)  //거리안에 들오았다면
         {
-            Debug.Log("공격범위안에 왔어");
+           // Debug.Log("공격범위안에 왔어");
             SetState(AIState.Attacking);
         }
     }
@@ -238,6 +238,28 @@ public class NPC : MonoBehaviour//, IDamagable
         return Vector3.Angle(transform.position - player.transform.position, transform.position + targetPos);
     }
 
+
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Melee")
+        {
+            Weapon weapon = other.GetComponent<Weapon>();
+            health -= weapon.damage;
+            Debug.Log("몬스터 체력 : " + health);
+        }
+
+        if(other.tag == "Bullet")
+        {
+            Bullet bullet = other.GetComponent<Bullet>();
+            health -= bullet.damage;
+            Debug.Log("몬스터 체력 : " + health);
+        }
+        if (health <= 0)
+            Die();
+
+        StartCoroutine(DamageFlash());
+    }
     public void TakePhysicalDamage(int damageAmount)
     {
         health -= damageAmount;
@@ -257,7 +279,7 @@ public class NPC : MonoBehaviour//, IDamagable
         Destroy(gameObject);
     }
 
-    IEnumerator DamageFlash()
+    IEnumerator DamageFlash() //깜까이는 것임.
     {
         for (int x = 0; x < meshRenderers.Length; x++)
             meshRenderers[x].material.color = new Color(1.0f, 0.6f, 0.6f);

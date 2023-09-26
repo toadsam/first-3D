@@ -51,7 +51,7 @@ public class Weapon : MonoBehaviour
     {//1. 총알발사
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
-        bulletRigid.velocity = bulletPos.forward * 50; //벨로시티값을 주어서 총알의 앞방향으로 보낸다.
+        bulletRigid.velocity = bulletPos.forward * 80; //벨로시티값을 주어서 총알의 앞방향으로 보낸다.
 
         yield return null;
 

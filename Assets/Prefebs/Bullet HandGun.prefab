@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9185848966952550198}
   m_Layer: 10
   m_Name: Bullet HandGun
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,4 +208,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211faca1e7552ab4ba675032014edf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 5
