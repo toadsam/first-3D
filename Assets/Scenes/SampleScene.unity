@@ -500,7 +500,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &193601505
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -13648,8 +13648,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 5, z: 0}
+  m_Size: {x: 50, y: 50, z: 50}
+  m_Center: {x: 0, y: 40, z: 0}
 --- !u!114 &1121446007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20776,7 +20776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &1655974578
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -20938,8 +20938,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 5, z: 0}
+  m_Size: {x: 150, y: 150, z: 150}
+  m_Center: {x: 0, y: 150, z: 0}
 --- !u!114 &1682044305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20953,7 +20953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 206913382}
-  health: 6
+  health: 100
   walkSpeed: 1000
   runSpeed: 2000
   detectDistance: 30
@@ -21103,8 +21103,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 5, z: 0}
+  m_Size: {x: 20, y: 10, z: 20}
+  m_Center: {x: 0, y: 35, z: 0}
 --- !u!114 &1700297919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27138,7 +27138,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 3.5, y: 2.5, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!114 &1989507077
 MonoBehaviour:

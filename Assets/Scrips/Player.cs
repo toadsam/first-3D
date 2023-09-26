@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
         }
 
         if(!isBorder) //이렇게 조건문을 설정하므로써 회전을 할 수 있지만 움직임은 막을 수 있다.
-        transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime; //다운상태면 속도를 줄이기
+        transform.position += moveVec * speed * (wDown ? 4f : 1f) * Time.deltaTime; //다운상태면 속도를 줄이기
 
         anim.SetBool("isRun", moveVec != Vector3.zero);
         anim.SetBool("isWalk", wDown);
