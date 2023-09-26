@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     public int ammo;
     public int coin;
-    public int health;
+    public static int health;
     
 
     public int maxammo;
@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
         rotateToMouse = GetComponent<RotateToMouse>();  //카메라 속성가져오고
         anim = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
+        health = maxhealth;
     }
     
 
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
         Interation();
         Swap();
         UpdateRotate();
+        
     }
 
     void GetInput()  //방향키 받아오는 메서드
@@ -98,7 +100,7 @@ public class Player : MonoBehaviour
     {
         Vector3 a = transform.right * hAxis;
         Vector3 b = transform.forward * vAxis;
-        moveVec = (a + b).normalized * 2;
+        moveVec = (a + b).normalized * 6;  //이걸로 속도 조절가능하게 만듬
         rigid.MovePosition(transform.position +  moveVec * Time.deltaTime);
         //moveVec = new Vector3(hAxis, 0, vAxis).normalized;  //똑같은 크기의 움직임을 위해서 노멀라이즈사용
         //moveVec = (hAxis + vAxis).
