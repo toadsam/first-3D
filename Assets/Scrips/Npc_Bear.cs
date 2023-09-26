@@ -115,7 +115,7 @@ public class NPC : MonoBehaviour//, IDamagable
             {
                 lastAttackTime = Time.time;
                 Player.health -= 10;//여기부분 스태틱으로 하기
-                Debug.Log("체력 : " + Player.health);
+               // Debug.Log("체력 : " + Player.health);
                 // PlayerController.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
                 animator.speed = 1;
                 animator.SetTrigger("Attack");
