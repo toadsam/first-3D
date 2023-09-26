@@ -52,6 +52,7 @@ public class NPC : MonoBehaviour//, IDamagable
 
     private void Awake()
     {
+       // player = GetComponent<Player>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();// meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -256,8 +257,11 @@ public class NPC : MonoBehaviour//, IDamagable
             Debug.Log("몬스터 체력 : " + health);
         }
         if (health <= 0)
+        {
+          //  Respwan();
             Die();
-
+            //Respwan();
+        }
         StartCoroutine(DamageFlash());
     }
     public void TakePhysicalDamage(int damageAmount)
@@ -265,7 +269,7 @@ public class NPC : MonoBehaviour//, IDamagable
         health -= damageAmount;
         if (health <= 0)
             Die();
-
+      
         StartCoroutine(DamageFlash());
     }
 
@@ -287,5 +291,10 @@ public class NPC : MonoBehaviour//, IDamagable
         yield return new WaitForSeconds(0.1f);
         for (int x = 0; x < meshRenderers.Length; x++)
             meshRenderers[x].material.color = Color.white;
+    }
+
+    void Respwan()
+    {
+        Instantiate(gameObject, transform.position, player.transform.rotation);    
     }
 }
