@@ -17,6 +17,9 @@ public class NPC_Boss : MonoBehaviour
     public Player player;
     public GameObject bearDropItem;
 
+    public GameObject Fire;
+   // public ParticleSystem fireParticle;
+
     [Header("Stats")]
     public int health;
     public float walkSpeed;
@@ -78,7 +81,7 @@ public class NPC_Boss : MonoBehaviour
             case AIState.Attacking: AttackingUpdate(); break;
             case AIState.Fleeing: FleeingUpdate(); break;
         }
-        Debug.Log(playerDistance);
+       // Debug.Log(playerDistance);
     }
 
     private void FleeingUpdate()
@@ -114,6 +117,7 @@ public class NPC_Boss : MonoBehaviour
             agent.isStopped = true;  //데미지를 입하는 부분 
             if (Time.time - lastAttackTime > attackRate)
             {
+                Fire.SetActive(false);
                 int AttackType = Random.Range(1, 4);
                 Debug.Log(AttackType);
             
@@ -137,6 +141,7 @@ public class NPC_Boss : MonoBehaviour
                 else if (AttackType == 3)
                 {
                     attackRate = 8;
+                    Fire.SetActive(true);
                     animator.SetTrigger("Fiy");
                 }
                 fieldOfView = 120f;
