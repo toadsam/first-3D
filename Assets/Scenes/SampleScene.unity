@@ -556,6 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -764,6 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -1086,6 +1088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -1191,6 +1194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -1369,6 +1373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -1458,6 +1463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -1783,6 +1789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -7336,6 +7343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -7618,7 +7626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 700400480}
   m_Layer: 0
-  m_Name: GameObject (6)
+  m_Name: Bears Respwan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7632,7 +7640,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700400479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.909386, y: -0.2, z: -7.2276497}
+  m_LocalPosition: {x: 418.5, y: -15, z: 71.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13260,6 +13268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -13424,6 +13433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -13616,6 +13626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -13705,6 +13716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 100
@@ -14112,6 +14124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -14201,6 +14214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -14491,6 +14505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -14963,6 +14978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -20771,6 +20787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -20892,6 +20909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 100
@@ -21058,6 +21076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -21734,6 +21753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -27185,6 +27205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -27468,6 +27489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b88331b6810f5b47b2c54ca1f09867e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   player: {fileID: 206913382}
   respwanPos: {fileID: 0}
   health: 6
@@ -27759,7 +27781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66300b2cb0c188144800e6ecb5ca29c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bear: {fileID: 1634812848518376115, guid: 1895a9a6c45053f44b5125a8b0728051, type: 3}
+  bear: {fileID: 1634812848518376115, guid: 485682fc41a15854f8a52964f3593194, type: 3}
   respwanPos: {fileID: 700400480}
   player: {fileID: 206913382}
 --- !u!4 &2120467976
