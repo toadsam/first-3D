@@ -15,7 +15,8 @@ public class NPC_Boss : MonoBehaviour
 
 
     public Player player;
-    public GameObject bearDropItem;
+    public GameObject Dragon1;
+    public GameObject Dragon2;
 
     public GameObject Fire;
    // public ParticleSystem fireParticle;
@@ -120,7 +121,7 @@ public class NPC_Boss : MonoBehaviour
             {
                // collider.enabled = false;
                 Fire.SetActive(false);
-                int AttackType = Random.Range(1, 4);
+                int AttackType = Random.Range(1, 5);
                 Debug.Log(AttackType);
             
             lastAttackTime = Time.time;
@@ -147,6 +148,14 @@ public class NPC_Boss : MonoBehaviour
                     attackRate = 8;
                     Fire.SetActive(true);
                     animator.SetTrigger("Fiy");
+                }
+                else if (AttackType == 4)
+                {
+                    attackRate = 6;
+                    animator.SetTrigger("Call");
+                    Instantiate(Dragon1, transform.position, Quaternion.identity);
+                    Instantiate(Dragon2, transform.position, Quaternion.identity);
+
                 }
                 fieldOfView = 120f;
             }
