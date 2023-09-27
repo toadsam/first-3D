@@ -13,6 +13,13 @@ public class Player : MonoBehaviour
     public int hasGrenades;
     public Camera followCamera;
 
+    public float lookSensitivity; //카메라의 민감도
+    public float cameraRotationLimit; //카메라의 민감도
+    public float currentCameraRotationX = 0f;
+    public Camera theCamera;
+    public bool canLook = true;
+
+
     public int ammo;
     public int coin;
     public static int health;
@@ -59,6 +66,7 @@ public class Player : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
         health = maxhealth;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     
 
@@ -76,8 +84,9 @@ public class Player : MonoBehaviour
         Dodge();
         Interation();
         Swap();
-        UpdateRotate();
-        
+      //  UpdateRotate();
+        CameraRotationLimit();
+        CharacterRotation();
     }
 
     void GetInput()  //방향키 받아오는 메서드
@@ -336,5 +345,26 @@ public class Player : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
         rotateToMouse.CalculateRotation(mouseX, mouseY);
+    }
+
+    void CameraRotationLimit()
+    {
+        float _xRotation = Input.GetAxisRaw("Mouse Y");
+        float _cameraRotationX = _xRotation * lookSensitivity;
+        currentCameraRotationX -= _cameraRotationX;
+        currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
+        theCamera.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
+    }
+
+    void CharacterRotation()
+    {
+        float _yRotation = Input.GetAxisRaw("Mouse X");
+        Vector3 _characterRotationY = new Vector3(0f,_yRotation, 0f) * lookSensitivity;
+        rigid.MoveRotation(rigid.rotation*Quaternion.Euler(_characterRotationY));
+    }
+    public void ToggleCursor(bool toggle)
+    {
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
     }
 }

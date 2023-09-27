@@ -1,29 +1,20 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum AIState  //ai상태
+public class NPC_Boss : MonoBehaviour
 {
-    Idle,
-    Wandering,
-    Attacking,
-    Fleeing
-}
-
-
-
-
-public class NPC : MonoBehaviour//, IDamagable
-{
-    public enum AnimalType
+    public enum AIState  //ai상태
     {
-        bear,
-        fox,
-        eagle,
-        dinosaur
+        Idle,
+        Wandering,
+        Attacking,
+        Fleeing
     }
+    
 
-    public AnimalType type;
+    
     public Player player;
     public GameObject bearDropItem;
 
@@ -267,11 +258,11 @@ public class NPC : MonoBehaviour//, IDamagable
         }
         if (health <= 0)
         {
-            
+
             //Invoke("Respwan",4);
             Die();
             DropItem();
-           
+
         }
         StartCoroutine(DamageFlash());
     }
@@ -290,12 +281,7 @@ public class NPC : MonoBehaviour//, IDamagable
         //{
         //    Instantiate(dropOnDeath[x].dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
         //}
-        if (type == AnimalType.bear)
-        {
-
-            GameManager.Instance.bearNum--;
-
-        }
+        
         Destroy(gameObject);
     }
 
@@ -312,21 +298,6 @@ public class NPC : MonoBehaviour//, IDamagable
 
     public void DropItem()
     {
-        switch (type)
-        {
-            case AnimalType.bear:
-                Debug.Log("아이템떨어졌어요");
-                GameObject go = Instantiate(bearDropItem, this.gameObject.transform.position, Quaternion.identity);
-                go.GetComponent<Rigidbody>().AddForce(transform.up * 50, ForceMode.Impulse); //중력을 껏다가 키면 괜찮을 수도?
-                //랜덤으로 할려면 for문 돌려서하거나 효과를 주면 될듯
-                break;
-            case NPC.AnimalType.fox:
-                break;
-            case NPC.AnimalType.dinosaur:
-                break;
-            case NPC.AnimalType.eagle:
-                break;
-            default: break;
-        }
+        
     }
 }
