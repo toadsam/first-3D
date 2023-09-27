@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        BearRespwan();
+      //  BearRespwan();
     }
 
     // Update is called once per frame
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void BearRespwan()
     {
-        if (bearNum < 1)
+        if (bearNum < 3)
         {
 
             scale = Random.Range(1F, 3F);

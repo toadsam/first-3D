@@ -241,8 +241,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 0}
-  respwanPos: {fileID: 0}
-  bearDropItem: {fileID: 7363700807988154450, guid: 6301afd0bbde83846b00f7a6084d194c, type: 3}
+  dropItem:
+  - {fileID: 7363700807988154450, guid: 6301afd0bbde83846b00f7a6084d194c, type: 3}
+  - {fileID: 6810436397289943223, guid: a8507864e64ada548bd777920038b1ca, type: 3}
+  - {fileID: 121492826843336271, guid: 6526c1d9f2deaaf46955f15dd9a3e959, type: 3}
+  - {fileID: 6786330412098381317, guid: 5da5e56e892876b499725114d0f93a5f, type: 3}
   health: 30
   walkSpeed: 8
   runSpeed: 30

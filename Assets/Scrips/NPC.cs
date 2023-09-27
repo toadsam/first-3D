@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,7 +26,8 @@ public class NPC : MonoBehaviour//, IDamagable
 
     public AnimalType type;
     public Player player;
-    public GameObject bearDropItem;
+    public List<GameObject>dropItem = new List<GameObject>();
+    //public GameObject bearDropItem;
 
     [Header("Stats")]
     public int health;
@@ -316,9 +318,12 @@ public class NPC : MonoBehaviour//, IDamagable
         {
             case AnimalType.bear:
                 Debug.Log("아이템떨어졌어요");
-                GameObject go = Instantiate(bearDropItem, this.gameObject.transform.position, Quaternion.identity);
+                for(int i = 0; i < dropItem.Count; i++) { 
+                    int num = Random.Range(0, dropItem.Count);
+                GameObject go = Instantiate(dropItem[num], this.gameObject.transform.position, Quaternion.identity);
                 go.GetComponent<Rigidbody>().AddForce(transform.up * 50, ForceMode.Impulse); //중력을 껏다가 키면 괜찮을 수도?
                 //랜덤으로 할려면 for문 돌려서하거나 효과를 주면 될듯
+                }
                 break;
             case NPC.AnimalType.fox:
                 break;

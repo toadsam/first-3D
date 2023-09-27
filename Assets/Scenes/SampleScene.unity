@@ -680,7 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 25
   runSpeed: 50
@@ -889,7 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 25
   runSpeed: 50
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 6
   runSpeed: 30
@@ -1323,7 +1323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 25
   runSpeed: 50
@@ -1502,7 +1502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 25
   runSpeed: 50
@@ -1881,7 +1881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 25
   runSpeed: 50
@@ -7451,7 +7451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 6
   runSpeed: 30
@@ -13450,7 +13450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 6
   runSpeed: 30
@@ -13714,7 +13714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 6
   runSpeed: 30
@@ -13809,7 +13809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 100
   walkSpeed: 25
   runSpeed: 50
@@ -14217,7 +14217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 25
   runSpeed: 50
@@ -14307,7 +14307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 25
   runSpeed: 50
@@ -20746,7 +20746,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem:
+  - {fileID: 7363700807988154450, guid: 6301afd0bbde83846b00f7a6084d194c, type: 3}
+  - {fileID: 2503094255407762765, guid: 42983e34f8f718248bd9b2a7fe574f89, type: 3}
+  - {fileID: 121492826843336271, guid: 6526c1d9f2deaaf46955f15dd9a3e959, type: 3}
+  - {fileID: 3838415706668688079, guid: a7378e4c233bd944c8d3388b6b7fa949, type: 3}
   health: 6
   walkSpeed: 25
   runSpeed: 50
@@ -20873,7 +20877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 100
   walkSpeed: 1000
   runSpeed: 2000
@@ -20968,7 +20972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 6
   runSpeed: 30
@@ -21692,7 +21696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 25
   runSpeed: 50
@@ -27240,7 +27244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   player: {fileID: 206913382}
-  bearDropItem: {fileID: 0}
+  dropItem: []
   health: 6
   walkSpeed: 25
   runSpeed: 50
