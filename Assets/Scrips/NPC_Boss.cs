@@ -50,6 +50,7 @@ public class NPC_Boss : MonoBehaviour
 
     private NavMeshAgent agent;
     private Animator animator;
+    public Collider collider;
     private SkinnedMeshRenderer[] meshRenderers;
 
     private void Awake()
@@ -58,7 +59,7 @@ public class NPC_Boss : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();// meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-
+      //  collider = GetComponentInChildren<Collider>();
     }
 
     private void Start()
@@ -117,6 +118,7 @@ public class NPC_Boss : MonoBehaviour
             agent.isStopped = true;  //데미지를 입하는 부분 
             if (Time.time - lastAttackTime > attackRate)
             {
+               // collider.enabled = false;
                 Fire.SetActive(false);
                 int AttackType = Random.Range(1, 4);
                 Debug.Log(AttackType);
@@ -129,6 +131,7 @@ public class NPC_Boss : MonoBehaviour
                 fieldOfView = 60f;
                 if (AttackType == 1)
                 {
+                    collider.enabled = true;
                     attackRate = 3;
                     animator.SetTrigger("Attack");
                 }
@@ -136,6 +139,7 @@ public class NPC_Boss : MonoBehaviour
                 else if (AttackType == 2)
                 {
                     attackRate = 5;
+                    collider.enabled = true;
                     animator.SetTrigger("ClawAttack");
                 }
                 else if (AttackType == 3)
@@ -268,6 +272,11 @@ public class NPC_Boss : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        if(other.tag == "Player")
+        {
+            Player.health -= 10;
+            Debug.Log("일반스킬로의 체력" + Player.health);
+        }
         if (other.tag == "Melee")
         {
             Weapon weapon = other.GetComponent<Weapon>();
