@@ -65,6 +65,7 @@ public class NPC_Boss : MonoBehaviour
 
     private void Update()
     {
+        
         // 시아각 해결 문제 없음 본체랑 꼬리랑 꺼꾸로 되있었다.  Debug.Log(IsPlaterInFireldOfView());
         playerDistance = Vector3.Distance(transform.position, player.transform.position); //플레이어와 자신사이의 거리
         // 여기는 문젱없음 Debug.Log(playerDistance);
@@ -77,7 +78,7 @@ public class NPC_Boss : MonoBehaviour
             case AIState.Attacking: AttackingUpdate(); break;
             case AIState.Fleeing: FleeingUpdate(); break;
         }
-       // Debug.Log(playerDistance);
+        Debug.Log(playerDistance);
     }
 
     private void FleeingUpdate()
@@ -113,7 +114,7 @@ public class NPC_Boss : MonoBehaviour
             agent.isStopped = true;  //데미지를 입하는 부분 
             if (Time.time - lastAttackTime > attackRate)
             {
-                int AttackType = Random.Range(1, 3);
+                int AttackType = Random.Range(1, 4);
                 Debug.Log(AttackType);
             
             lastAttackTime = Time.time;
@@ -123,10 +124,21 @@ public class NPC_Boss : MonoBehaviour
                 animator.speed = 1;
                 fieldOfView = 60f;
                 if (AttackType == 1)
+                {
+                    attackRate = 3;
                     animator.SetTrigger("Attack");
+                }
 
                 else if (AttackType == 2)
+                {
+                    attackRate = 5;
                     animator.SetTrigger("ClawAttack");
+                }
+                else if (AttackType == 3)
+                {
+                    attackRate = 8;
+                    animator.SetTrigger("Fiy");
+                }
                 fieldOfView = 120f;
             }
         }
@@ -266,9 +278,12 @@ public class NPC_Boss : MonoBehaviour
         }
         if (health <= 0)
         {
-
+            attackRate = 20;
+            StartCoroutine(DieAni());
+           // animator.SetTrigger("Die");
+           // Invoke("Die", 7);
             //Invoke("Respwan",4);
-            Die();
+           // Die();
             DropItem();
 
         }
@@ -289,8 +304,8 @@ public class NPC_Boss : MonoBehaviour
         //{
         //    Instantiate(dropOnDeath[x].dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
         //}
-
         Destroy(gameObject);
+        //Invoke("Destroy(gameObject)", 8);
     }
 
     IEnumerator DamageFlash() //깜빡이는 것임.
@@ -301,6 +316,13 @@ public class NPC_Boss : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         for (int x = 0; x < meshRenderers.Length; x++)
             meshRenderers[x].material.color = Color.white;
+    }
+
+    IEnumerator DieAni() //깜빡이는 것임.
+    {
+        animator.SetBool("Die", true);
+        yield return new WaitForSeconds(8f);
+        Destroy(gameObject);
     }
 
 
