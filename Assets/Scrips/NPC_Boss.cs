@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,9 +11,9 @@ public class NPC_Boss : MonoBehaviour
         Attacking,
         Fleeing
     }
-    
 
-    
+
+
     public Player player;
     public GameObject bearDropItem;
 
@@ -78,7 +77,7 @@ public class NPC_Boss : MonoBehaviour
             case AIState.Attacking: AttackingUpdate(); break;
             case AIState.Fleeing: FleeingUpdate(); break;
         }
-
+       // Debug.Log(playerDistance);
     }
 
     private void FleeingUpdate()
@@ -114,12 +113,21 @@ public class NPC_Boss : MonoBehaviour
             agent.isStopped = true;  //데미지를 입하는 부분 
             if (Time.time - lastAttackTime > attackRate)
             {
-                lastAttackTime = Time.time;
+                int AttackType = Random.Range(1, 3);
+                Debug.Log(AttackType);
+            
+            lastAttackTime = Time.time;
                 Player.health -= 10;//여기부분 스태틱으로 하기
                                     // Debug.Log("체력 : " + Player.health);
                                     // PlayerController.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
                 animator.speed = 1;
-                animator.SetTrigger("Attack");
+                fieldOfView = 60f;
+                if (AttackType == 1)
+                    animator.SetTrigger("Attack");
+
+                else if (AttackType == 2)
+                    animator.SetTrigger("ClawAttack");
+                fieldOfView = 120f;
             }
         }
     }
@@ -281,7 +289,7 @@ public class NPC_Boss : MonoBehaviour
         //{
         //    Instantiate(dropOnDeath[x].dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
         //}
-        
+
         Destroy(gameObject);
     }
 
@@ -298,6 +306,6 @@ public class NPC_Boss : MonoBehaviour
 
     public void DropItem()
     {
-        
+
     }
 }
