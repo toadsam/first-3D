@@ -15,8 +15,10 @@ public class NPC_Boss : MonoBehaviour
 
 
     public Player player;
-    public GameObject Dragon1;
-    public GameObject Dragon2;
+    public GameObject dragon1;
+    public GameObject dragon2;
+    public Transform dragon1Pos;
+    public Transform dragon2Pos;
 
     public GameObject Fire;
    // public ParticleSystem fireParticle;
@@ -153,8 +155,7 @@ public class NPC_Boss : MonoBehaviour
                 {
                     attackRate = 6;
                     animator.SetTrigger("Call");
-                    Instantiate(Dragon1, transform.position, Quaternion.identity);
-                    Instantiate(Dragon2, transform.position, Quaternion.identity);
+                    Invoke("CallBabyDragon", 4);
 
                 }
                 fieldOfView = 120f;
@@ -352,5 +353,11 @@ public class NPC_Boss : MonoBehaviour
     public void DropItem()
     {
 
+    }
+
+    void CallBabyDragon()
+    {
+        Instantiate(dragon1, dragon1Pos.position, Quaternion.identity);
+        Instantiate(dragon2, dragon2Pos.position, Quaternion.identity);
     }
 }

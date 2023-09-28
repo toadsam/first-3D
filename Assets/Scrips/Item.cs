@@ -26,10 +26,17 @@ public class Item : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
         
     }
+    private void Start()
+    {
+        //rigid.AddExplosionForce(10, this.transform.up, 10);
+      //  rigid.AddForce(transform.up * 30, ForceMode.Impulse);
+    }
 
     private void Update()
     {
         transform.Rotate(Vector3 .up * Time.deltaTime *20);
+       // rigid.AddExplosionForce(10, this.transform.up, 10);
+        
     }
 
     void OnCollisionEnter(Collision collision)
@@ -38,8 +45,13 @@ public class Item : MonoBehaviour
         {
             rigid.isKinematic = true;
             sphereCollider.enabled = false;
-
+            Invoke("Destroy", 4);
+            
         }
         
+    }
+    void Destroy()
+    {
+        Destroy(this.gameObject);
     }
 }

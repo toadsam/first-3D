@@ -26,38 +26,53 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
 
-        bearNum = 0;
+        bearNum = 2;
     }
 
     private void Start()
     {
-      //  BearRespwan();
+         StartSetBearNum();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        BearRespwan();
+
+        UpdateBearNum();
     }
 
     void BearRespwan()
-    {
-        if (bearNum < 3)
-        {
-
-            scale = Random.Range(1F, 3F);
+    {      
+            scale = Random.Range(1F, 2F);
             GameObject bears = Instantiate(bear, bearRespwanPos.position, Quaternion.identity);
             bears.GetComponent<NPC>().player = player;
             bears.transform.localScale = new Vector3(scale, scale, scale);
-            bearNum++;
-
-        }
+           // bearNum++;
+      
     }
 
     public void BearDie()
     {
         
         bearNum--;
+    }
+    public void StartSetBearNum()
+    {
+        for(int i = 0; i < bearNum; i++)
+        {
+            BearRespwan();
+        }
+    }
+    public void UpdateBearNum()
+    {
+        if (bearNum < 2)
+        {
+            bearNum++;
+            Invoke("BearRespwan", 4);
+
+
+        }
     }
    
     

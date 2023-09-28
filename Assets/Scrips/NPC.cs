@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public enum AIState  //ai상태
 {
@@ -26,7 +27,9 @@ public class NPC : MonoBehaviour//, IDamagable
 
     public AnimalType type;
     public Player player;
-    public List<GameObject>dropItem = new List<GameObject>();
+    public GameObject mySelf;
+    public List<GameObject> dropItem = new List<GameObject>();
+    Vector3 itemPosition;
     //public GameObject bearDropItem;
 
     [Header("Stats")]
@@ -76,7 +79,7 @@ public class NPC : MonoBehaviour//, IDamagable
     }
 
     private void Update()
-    {
+    {   
         // 시아각 해결 문제 없음 본체랑 꼬리랑 꺼꾸로 되있었다.  Debug.Log(IsPlaterInFireldOfView());
         playerDistance = Vector3.Distance(transform.position, player.transform.position); //플레이어와 자신사이의 거리
         // 여기는 문젱없음 Debug.Log(playerDistance);
@@ -269,11 +272,11 @@ public class NPC : MonoBehaviour//, IDamagable
         }
         if (health <= 0)
         {
-            
+
             //Invoke("Respwan",4);
-            Die();
             DropItem();
-           
+            Die();
+
         }
         StartCoroutine(DamageFlash());
     }
@@ -314,24 +317,53 @@ public class NPC : MonoBehaviour//, IDamagable
 
     public void DropItem()
     {
-        switch (type)
+        for (int i = 0; i < dropItem.Count; i++)
         {
-            case AnimalType.bear:
-                Debug.Log("아이템떨어졌어요");
-                for(int i = 0; i < dropItem.Count; i++) { 
-                    int num = Random.Range(0, dropItem.Count);
-                GameObject go = Instantiate(dropItem[num], this.gameObject.transform.position, Quaternion.identity);
-                go.GetComponent<Rigidbody>().AddForce(transform.up * 50, ForceMode.Impulse); //중력을 껏다가 키면 괜찮을 수도?
-                //랜덤으로 할려면 for문 돌려서하거나 효과를 주면 될듯
-                }
-                break;
-            case NPC.AnimalType.fox:
-                break;
-            case NPC.AnimalType.dinosaur:
-                break;
-            case NPC.AnimalType.eagle:
-                break;
-            default: break;
+            itemPosition = mySelf.transform.position + new Vector3(0, 5, 0);
+            //dropItem.Count;
+            int num = Random.Range(0, dropItem.Count);
+            GameObject go = Instantiate(dropItem[num], itemPosition, Quaternion.identity);
+            //Debug.Log(itemPosition);
+            go.GetComponent<Rigidbody>().AddForce(transform.up * 20, ForceMode.Impulse); //중력을 껏다가 키면 괜찮을 수도?
+
+            //랜덤으로 할려면 for문 돌려서하거나 효과를 주면 될듯
         }
+
+        //switch (type)
+        //{
+        //    case AnimalType.bear:           
+        //        for (int i = 0; i < dropItem.Count; i++)
+        //        {
+        //            itemPosition = mySelf.transform.position + new Vector3(0, 5, 0);
+        //            //dropItem.Count;
+        //            int num = Random.Range(0, dropItem.Count);
+        //            GameObject go = Instantiate(dropItem[num], itemPosition, Quaternion.identity);
+        //            //Debug.Log(itemPosition);
+        //            go.GetComponent<Rigidbody>().AddForce(transform.up * 20, ForceMode.Impulse); //중력을 껏다가 키면 괜찮을 수도?
+
+        //            //랜덤으로 할려면 for문 돌려서하거나 효과를 주면 될듯
+        //        }
+        //        break;
+        //    case NPC.AnimalType.fox:
+        //        break;
+        //    case NPC.AnimalType.dinosaur:
+        //        break;
+        //    case NPC.AnimalType.eagle:
+        //        break;
+        //    default: break;
+        //}
+    }
+
+    IEnumerator DestroyDropItem() //깜빡이는 것임.
+    {
+
+        int num = Random.Range(0, dropItem.Count);
+        GameObject go = Instantiate(dropItem[num], this.gameObject.transform.up * 5, Quaternion.identity);
+        Debug.Log(this.gameObject.transform.up * 5);
+        go.GetComponent<Rigidbody>().AddForce(transform.up * 80, ForceMode.Impulse); //중력을 껏다가 키면 괜찮을 수도?          
+
+        yield return new WaitForSeconds(4f);
+        Destroy(go);
+
     }
 }
