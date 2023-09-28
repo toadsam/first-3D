@@ -28262,6 +28262,10 @@ PrefabInstance:
       propertyPath: dragon2Pos
       value: 
       objectReference: {fileID: 1475306972}
+    - target: {fileID: 6542879365146894867, guid: ace5df5c05d323c46bd82f30de253357, type: 3}
+      propertyPath: detectDistance
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 7786612320668901945, guid: ace5df5c05d323c46bd82f30de253357, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9396927
