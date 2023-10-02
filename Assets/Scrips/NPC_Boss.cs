@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using TMPro;
 
 public class NPC_Boss : MonoBehaviour
 {
@@ -13,6 +15,11 @@ public class NPC_Boss : MonoBehaviour
     }
 
 
+    public GameObject hpBar;
+    public Slider hp;
+    public TextMeshProUGUI hpText;
+    //public TextMeshPro hpText;
+    //public Text hpText;
 
     public Player player;
     public GameObject dragon1;
@@ -58,6 +65,7 @@ public class NPC_Boss : MonoBehaviour
 
     private void Awake()
     {
+        hp.maxValue = health;
         //player = GetComponent<Player>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
@@ -72,7 +80,8 @@ public class NPC_Boss : MonoBehaviour
 
     private void Update()
     {
-        
+        hpText.text = "500/" + health.ToString();
+        hp.value = health;
         // 시아각 해결 문제 없음 본체랑 꼬리랑 꺼꾸로 되있었다.  Debug.Log(IsPlaterInFireldOfView());
         playerDistance = Vector3.Distance(transform.position, player.transform.position); //플레이어와 자신사이의 거리
         // 여기는 문젱없음 Debug.Log(playerDistance);
@@ -282,13 +291,18 @@ public class NPC_Boss : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        
         if(other.tag == "Player")
         {
+            ShowHPBar();
+            Invoke("HideHPBar", 4);
             Player.health -= 10;
             Debug.Log("일반스킬로의 체력" + Player.health);
         }
         if (other.tag == "Melee")
         {
+            ShowHPBar();
+            Invoke("HideHPBar", 4);
             Weapon weapon = other.GetComponent<Weapon>();
             health -= weapon.damage;
             Debug.Log("몬스터 체력 : " + health);
@@ -359,5 +373,15 @@ public class NPC_Boss : MonoBehaviour
     {
         Instantiate(dragon1, dragon1Pos.position, Quaternion.identity);
         Instantiate(dragon2, dragon2Pos.position, Quaternion.identity);
+    }
+
+    void ShowHPBar()
+    {
+        hpBar.SetActive(true);
+    }
+
+    void HideHPBar()
+    {
+        hpBar.SetActive(false);
     }
 }
