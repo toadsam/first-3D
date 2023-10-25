@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     bool sDown1;  //무기 키를 받는 메서드
     bool sDown2;
     bool sDown3;
+    public bool isSturn;
+    public float sturnTime;
 
     bool isJump;
     bool isDodge;
@@ -41,7 +43,7 @@ public class Player : MonoBehaviour
     bool isFireReady = true;//공격이 가능한지 여부알기
     bool isBorder; //벽 충돌을 인지하기 위한 변수생성
 
-    Vector3 moveVec;
+    public Vector3 moveVec;
     Vector3 dodgeVec;
     Animator anim;
     Rigidbody rigid;
@@ -63,7 +65,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //SturnStart();
         GetInput();
         Move();
         Turn();      
@@ -100,7 +102,7 @@ public class Player : MonoBehaviour
             moveVec = dodgeVec;
         }
 
-        if (isSwap  || isReload  || !isFireReady)
+        if (isSwap  || isReload  || !isFireReady || isSturn)
         {
             moveVec = Vector3.zero; //만약 무기를 바꾸는 중이라면 움직임을 멈추도록한다.
         }
@@ -287,8 +289,33 @@ public class Player : MonoBehaviour
         }
     }
     void SwapOut()
-    {      
+    {
+        sturnTime = 0;
+        if (isSturn)
+        {
+            moveVec = new Vector3(0,0,0);
+        }
         isSwap = false;
+    }
+
+    public IEnumerator SturnStart()
+    {
+        isSwap = true;
+        Debug.Log("여기들어왔어");
+        yield return new WaitForSeconds(1.5f); // + 조건
+        isSwap = false;                           // 함수 내용
+    }
+    //void SturnStart()
+    //{
+
+    //    isSwap = true;
+
+    //    //moveVec = new Vector3(0, 0, 0);
+    //}
+
+    public void Sturn()
+    {
+
     }
 
     void Interation()

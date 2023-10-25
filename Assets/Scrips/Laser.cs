@@ -21,10 +21,13 @@ public class Laser : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Debug.Log("ㅎㅎㅎㅎㅎㅎ");
             // playerConditions.health.curValue -= 1f;
             //  Player.health -= 2;
             //  Debug.Log("ºÒ·Î¸ÂÀºÃ¼·Â " + Player.health);
-            Debug.Log("나나나난");
+            //player.moveVec = new Vector3(0, 0, 0);
+            // Debug.Log(player.moveVec);
+            StartCoroutine("player.SturnStart()");
         }
     }
 }
