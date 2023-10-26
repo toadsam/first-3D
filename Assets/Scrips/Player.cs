@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     bool isReload; //장전시간을 위해서 생성
     bool isFireReady = true;//공격이 가능한지 여부알기
     bool isBorder; //벽 충돌을 인지하기 위한 변수생성
+    bool isRotate;
 
     public Vector3 moveVec;
     Vector3 dodgeVec;
@@ -102,7 +103,7 @@ public class Player : MonoBehaviour
             moveVec = dodgeVec;
         }
 
-        if (isSwap  || isReload  || !isFireReady || isSturn)
+        if (isSwap  || isReload  || !isFireReady || isSturn ||isRotate)
         {
             moveVec = Vector3.zero; //만약 무기를 바꾸는 중이라면 움직임을 멈추도록한다.
         }
@@ -301,9 +302,34 @@ public class Player : MonoBehaviour
     public IEnumerator SturnStart()
     {
         isSwap = true;
+        anim.SetBool("isSturn", true);
         Debug.Log("여기들어왔어");
-        yield return new WaitForSeconds(1.5f); // + 조건
-        isSwap = false;                           // 함수 내용
+        yield return new WaitForSeconds(1f); // + 조건
+        isSwap = false;
+        anim.SetBool("isSturn", false);// 함수 내용
+    }
+
+    public void StartSturnCoroutine()
+    {
+        StartCoroutine(SturnStart());
+    }
+
+    public IEnumerator LotateStart()
+    {
+        //transform.Rotate(Vector3.up * Time.deltaTime * 50);
+        rigid.AddForce(new Vector3 (0,0.5f,-0.1f) * 50, ForceMode.Impulse);
+        isRotate = true;
+        //anim.SetBool("isRotate", true);
+        anim.SetTrigger("Rotate");
+        Debug.Log("여기들어왔어");
+        yield return new WaitForSeconds(1f); // + 조건
+        isRotate = false;
+       // anim.SetBool("isRotate", false);// 함수 내용
+    }
+
+    public void LotateStartCoroutine()
+    {
+        StartCoroutine(LotateStart());
     }
     //void SturnStart()
     //{
