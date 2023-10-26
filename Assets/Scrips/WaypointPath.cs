@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class WaypointPath : MonoBehaviour
 {
-  public Transform GetWaypoint(int waypointIndex)
+  public Transform GetWaypoint(int waypointIndex) //경로를 정하는 것음
     {
-        return transform.GetChild(waypointIndex);
+        return transform.GetChild(waypointIndex); // 
     }
 
-    public int GetNextWaypointIndex(int currentWaypointIndex)
+    public int GetNextWaypointIndex(int currentWaypointIndex) //다음경로를 불러오는 메서드
     {
         int nextWaypointIndex = currentWaypointIndex + 1;
 
