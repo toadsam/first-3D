@@ -25,13 +25,14 @@ public class MovingPlaform : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         _elapsedTime += Time.deltaTime;
 
         float elapsedPercentage = _elapsedTime / _timeToWaypoint;
+        elapsedPercentage = Mathf.SmoothStep(0,1,elapsedPercentage);//한게에 스무딩이 추가된다
         transform.position = Vector3.Lerp(_previousWaypoint.position, _targetWaypoint.position, elapsedPercentage);
-
+        //transform.rotation = Quaternion.Lerp(_previousWaypoint.rotation, _targetWaypoint.rotation, elapsedPercentage); //재미를 주기 위해서 일단 회전값도 한번 넣어봄
         if(elapsedPercentage >= 1) 
         {
             TargetNextWaypoint();
@@ -49,4 +50,23 @@ public class MovingPlaform : MonoBehaviour
         float distanceToWaypoint = Vector3.Distance(_previousWaypoint.position, _targetWaypoint.position);
         _timeToWaypoint = distanceToWaypoint/ _speed;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            Debug.Log("adw");
+            other.transform.SetParent(transform);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.transform.SetParent(null);
+        }
+    }
 }
+//캐릭터를 이동플렛폼위에 올려놓고 이동시키면 움직여지지 않는다. 이것의 해결방법은 캐릭터를 플랫폼의 하위 즉 자식으로 만드는 것이다.
+//콜라인터의 충돌로 인한 오류를 막고 싶다면 표준업데이트가 아닌 고정업데이트를 사용하도록 이동을 변경해야한다.

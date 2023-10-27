@@ -73,7 +73,7 @@ public class Dapo : MonoBehaviour
             if (isFly) 
             {
                 isRide = !isRide;  //탈 수 있고 없고를 가림
-                rb.AddForce(DapoPos.transform.forward *50 + new Vector3(0,100,0) , ForceMode.Impulse );
+                rb.AddForce(DapoPos.transform.forward *50 + new Vector3(0,150,0) , ForceMode.Impulse );
                 //rb.AddForce(DapoPos.forward *80 , ForceMode.Impulse);
                 Debug.Log("나 대포 쏠준비가 되었어");
             }
