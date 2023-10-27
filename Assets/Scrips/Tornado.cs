@@ -138,8 +138,8 @@ public class Tornado : MonoBehaviour
             Invoke("WanderToNewLocation", Random.Range(minWanderWaitTime, maxWanderWaitTime)); //새로운 로케이션하는 것이 지연시키는 것
         }
 
-        Debug.Log("플레이어와의 거리" + playerDistance);
-        Debug.Log("플레이어와의 거리" + detectDistance);
+        //Debug.Log("플레이어와의 거리" + playerDistance);
+       // Debug.Log("플레이어와의 거리" + detectDistance);
 
         if (playerDistance < detectDistance)  //거리안에 들오았다면
         {

@@ -318,7 +318,7 @@ public class Player : MonoBehaviour
     public IEnumerator LotateStart()
     {
         //transform.Rotate(Vector3.up * Time.deltaTime * 50);
-        rigid.AddForce(new Vector3 (0,0.4f,-1f) * tornadoPower, ForceMode.Impulse);
+        rigid.AddForce(new Vector3 (0,0.5f,-0.3f) * tornadoPower, ForceMode.Impulse);
         isRotate = true;
         //anim.SetBool("isRotate", true);
         anim.SetTrigger("Rotate");

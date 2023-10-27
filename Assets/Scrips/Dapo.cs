@@ -11,6 +11,7 @@ public class Dapo : MonoBehaviour
     public Player player;
     Rigidbody rb;
     public Transform DapoPos;
+    public Transform DapoRot;
     bool isRide;
     bool isInside;
     bool isFly;
@@ -67,13 +68,11 @@ public class Dapo : MonoBehaviour
         if (isRide) //탈 수 있다면 타고
         {
             player.GetComponent<Transform>().position = DapoPos.position; //위치를 포지션과 일치시킨다.
-            //rb.velocity = transform.position * 5;
-            //Debug.Log("나 대포 쏠준비가 되었어");
-            //isRide = !isRide;
+            player.GetComponent<Transform>().localRotation = DapoPos.transform.rotation;// Quaternion.Euler(deg, 0, 0);
             if (isFly) 
             {
                 isRide = !isRide;  //탈 수 있고 없고를 가림
-                rb.AddForce(DapoPos.transform.forward *50 + new Vector3(0,150,0) , ForceMode.Impulse );
+                rb.AddForce(DapoPos.transform.up *30 + new Vector3(0,90,0) , ForceMode.Impulse );
                 //rb.AddForce(DapoPos.forward *80 , ForceMode.Impulse);
                 Debug.Log("나 대포 쏠준비가 되었어");
             }

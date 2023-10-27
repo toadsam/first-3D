@@ -32,7 +32,7 @@ public class MovingPlaform : MonoBehaviour
         float elapsedPercentage = _elapsedTime / _timeToWaypoint;
         elapsedPercentage = Mathf.SmoothStep(0,1,elapsedPercentage);//한게에 스무딩이 추가된다
         transform.position = Vector3.Lerp(_previousWaypoint.position, _targetWaypoint.position, elapsedPercentage);
-        //transform.rotation = Quaternion.Lerp(_previousWaypoint.rotation, _targetWaypoint.rotation, elapsedPercentage); //재미를 주기 위해서 일단 회전값도 한번 넣어봄
+        transform.rotation = Quaternion.Lerp(_previousWaypoint.rotation, _targetWaypoint.rotation, elapsedPercentage); //재미를 주기 위해서 일단 회전값도 한번 넣어봄
         if(elapsedPercentage >= 1) 
         {
             TargetNextWaypoint();
@@ -59,7 +59,21 @@ public class MovingPlaform : MonoBehaviour
             other.transform.SetParent(transform);
         }
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            Debug.Log("adw");
+            collision.gameObject.transform.SetParent(transform);
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.transform.SetParent(null);
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
