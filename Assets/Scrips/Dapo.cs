@@ -60,18 +60,27 @@ public class Dapo : MonoBehaviour
         {
             player.GetComponent<Transform>().position = DapoPos.position; //위치를 포지션과 일치시킨다.
             player.GetComponent<Transform>().localRotation = DapoPos.transform.rotation;// Quaternion.Euler(deg, 0, 0);
-            if (isFly) 
+            if (isFly)
             {
                 isRide = !isRide;  //탈 수 있고 없고를 가림
-                rb.AddForce(DapoPos.transform.up *30 + new Vector3(0,90,0) , ForceMode.Impulse );           
-                Debug.Log("나 대포 쏠준비가 되었어");
+                
             }
         }
-        if(Input.GetKeyDown (KeyCode.Y))  //y키를 통해 날 수 있는지 없는지를 조절한다.
+        if (Input.GetKeyDown (KeyCode.Y))  //y키를 통해 날 수 있는지 없는지를 조절한다.
         {
             isFly = true;
         }
         //Debug.Log(isFly);
+    }
+
+    private void FixedUpdate()
+    {
+        if (isFly)
+        {
+            
+            rb.AddForce(DapoPos.transform.up * 20, ForceMode.Impulse);   // new Vector3(0, 90, 0)
+            Debug.Log("나 대포 쏠준비가 되었어");
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
