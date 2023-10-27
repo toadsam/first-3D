@@ -19,7 +19,6 @@ public class Dapo : MonoBehaviour
     void Start()
     {
         rb = player.GetComponent<Rigidbody>();
-        //rb.velocity = transform.position * 5;
     }
 
     // Update is called once per frame
@@ -28,12 +27,8 @@ public class Dapo : MonoBehaviour
         if (Input.GetKey(KeyCode.E))  //e키를 누르면 
         {
             deg = deg + Time.deltaTime * turnSpeed;  //각도를 조정한다.
-            float rad = deg * Mathf.Deg2Rad  ;  // 그 각도의 정도를 맞춰주기
-           // turret.transform.rotation = Quaternion.Euler(rad, 0, 0);
-           // turret.transform.localPosition = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad));
+            float rad = deg * Mathf.Deg2Rad  ;  // 그 각도의 정도를 맞춰주기         
             turret.transform.eulerAngles = new Vector3(deg, 0, 0);  // 각도 맞추기
-          //  DapoPos.localPosition = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad));
-           // DapoPos.eulerAngles = new Vector3(deg, 0, 0);
             if (deg > 0)
             {
                 deg = 0;
@@ -47,11 +42,7 @@ public class Dapo : MonoBehaviour
         {
             deg = deg - Time.deltaTime * turnSpeed;
             float rad = deg * Mathf.Deg2Rad ;
-          //  turret.transform.rotation = Quaternion.Euler(rad, 0, 0);
-          //  turret.transform.localPosition = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad));
             turret.transform.eulerAngles = new Vector3(deg, 0, 0);
-          //  DapoPos.localPosition = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad));
-           // DapoPos.eulerAngles = new Vector3(deg, 0, 0);
             if (deg > 0)
             {
                 deg = 0;
@@ -72,8 +63,7 @@ public class Dapo : MonoBehaviour
             if (isFly) 
             {
                 isRide = !isRide;  //탈 수 있고 없고를 가림
-                rb.AddForce(DapoPos.transform.up *30 + new Vector3(0,90,0) , ForceMode.Impulse );
-                //rb.AddForce(DapoPos.forward *80 , ForceMode.Impulse);
+                rb.AddForce(DapoPos.transform.up *30 + new Vector3(0,90,0) , ForceMode.Impulse );           
                 Debug.Log("나 대포 쏠준비가 되었어");
             }
         }
