@@ -19,7 +19,7 @@ public class Thorn : MonoBehaviour
     void Update()
     {
        // ThornPos.position = Vector3.MoveTowards(ThornPos.position, pos2.position, 0.1f);
-        Debug.Log(ThornPos.position);
+       // Debug.Log(ThornPos.position);
 
         if (count == 0)
         {

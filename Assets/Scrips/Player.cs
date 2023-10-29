@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     bool isReload; //장전시간을 위해서 생성
     bool isFireReady = true;//공격이 가능한지 여부알기
     bool isBorder; //벽 충돌을 인지하기 위한 변수생성
+    bool isLebu; //레버 충돌을 인지
     bool isRotate;
 
     public Vector3 moveVec;
@@ -111,6 +112,12 @@ public class Player : MonoBehaviour
 
         if(!isBorder) //이렇게 조건문을 설정하므로써 회전을 할 수 있지만 움직임은 막을 수 있다.
         transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime; //다운상태면 속도를 줄이기
+
+        //if (isLebu)
+        //{
+        //    moveVec = dodgeVec;
+        //    // transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime; //다운상태면 속도를 줄이기
+        //}
 
         anim.SetBool("isRun", moveVec != Vector3.zero);
         anim.SetBool("isWalk", wDown);
@@ -364,6 +371,8 @@ public class Player : MonoBehaviour
     {
         Debug.DrawRay(transform.position, transform.forward * 5, Color.green);
         isBorder = Physics.Raycast(transform.position, transform.forward, 5, LayerMask.GetMask("Wall")); // 레이를 쏘아 닿는 오브젝트를 감지한다.
+        isLebu = Physics.Raycast(transform.position, transform.forward, 5, LayerMask.GetMask("Lebu"));
+        Debug.Log(isLebu);
     }
 
     void FreezeRotation()
