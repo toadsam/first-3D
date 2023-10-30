@@ -8,6 +8,8 @@ public class Thorn : MonoBehaviour
     public Transform pos2;
     public Transform ThornPos;
     int count;
+    public float pos1Time;
+    public float pos2Time;
     // Start is called before the first frame update
     void Start()
     {
