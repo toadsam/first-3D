@@ -25,8 +25,8 @@ public class Thorn : MonoBehaviour
 
         if (count == 0)
         {
-            ThornPos.position = Vector3.MoveTowards(ThornPos.position, pos1.position, 0.15f);
-            if(ThornPos.position == pos1.position) 
+            ThornPos.position = Vector3.MoveTowards(ThornPos.position, pos1.position, pos1Time);//0.15f
+            if (ThornPos.position == pos1.position) 
             {
                 count++;
             }
@@ -34,7 +34,7 @@ public class Thorn : MonoBehaviour
         }
         if (count == 1)
         {
-            ThornPos.position = Vector3.MoveTowards(ThornPos.position, pos2.position, 0.01f);
+            ThornPos.position = Vector3.MoveTowards(ThornPos.position, pos2.position, pos2Time);// 0.01f
             if (ThornPos.position == pos2.position)
             {
                 count--;
