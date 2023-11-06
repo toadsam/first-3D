@@ -2,6 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//public enum// Type  //여기서 필요한 아이템을 추가하면 됩니다 일단은 정해진 오브젝트가 없기 때문에 알파벳으로 두웠습니다.
+//{
+//    a,
+//    b,
+//    c,
+//    d,
+//    e,
+//    f
+//}
 public class RotationObstacle : MonoBehaviour
 {
     [SerializeField]
