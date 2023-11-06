@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Thorn : MonoBehaviour
 {
+    [Header("Object Pos")]
     public Transform pos1;
     public Transform pos2;
     public Transform ThornPos;
-    int count;
+
+    [Header("Object Time")]
     public float pos1Time;
     public float pos2Time;
     // Start is called before the first frame update
+    private int count;
     void Start()
     {
         ThornPos.position = pos2.position;
@@ -40,6 +43,14 @@ public class Thorn : MonoBehaviour
                 count--;
             }
             
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Debug.Log("가시에 닿았습니다");
         }
     }
 }

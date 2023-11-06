@@ -372,7 +372,7 @@ public class Player : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward * 5, Color.green);
         isBorder = Physics.Raycast(transform.position, transform.forward, 5, LayerMask.GetMask("Wall")); // 레이를 쏘아 닿는 오브젝트를 감지한다.
         isLebu = Physics.Raycast(transform.position, transform.forward, 5, LayerMask.GetMask("Lebu"));
-        Debug.Log(isLebu);
+      //  Debug.Log(isLebu);
     }
 
     void FreezeRotation()

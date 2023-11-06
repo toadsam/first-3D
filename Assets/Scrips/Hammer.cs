@@ -39,11 +39,19 @@ public class Hammer : MonoBehaviour
     private void SpeedUp()
     {
         curTime += Time.deltaTime;
-        Debug.Log(curTime);
+        //Debug.Log(curTime);
         if (curTime > speedUpTime)
         {
             rotateSpeed += rotateSpeedUp;
             curTime = 0;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            Debug.Log("데미지를 입었다");
         }
     }
 }

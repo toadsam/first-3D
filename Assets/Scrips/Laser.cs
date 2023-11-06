@@ -42,7 +42,8 @@ public class Laser : MonoBehaviour
             switch (gimic)
             {
                 case Type.Laser:
-                    player.StartSturnCoroutine();
+                    //  player.StartSturnCoroutine();
+                    Debug.Log("나 불에 들어옴");
                     break;
                 case Type.a:
                     player.LotateStartCoroutine();

@@ -38,11 +38,19 @@ public class Tree_Obstacle : MonoBehaviour
     private void SpeedUp()
     {
         curTime += Time.deltaTime;
-        Debug.Log(curTime);
+       // Debug.Log(curTime);
         if(curTime > speedUpTime)
         {
             rotateSpeed += rotateSpeedUp;
             curTime = 0;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Debug.Log("나무 장애물에 닿았습니다");
         }
     }
 }
