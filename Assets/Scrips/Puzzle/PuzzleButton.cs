@@ -23,12 +23,12 @@ public class PuzzleButton : MonoBehaviour
        for(int i = 0; i < _ButtonPositoin.Length; i++) 
         {
             _ButtonPositoin[i] = transform.GetChild(i).gameObject.transform;
-            _Button[i] = transform.GetChild(_ButtonPositoin.Length -1 + i).gameObject;
+            _Button[i] = transform.GetChild(_ButtonPositoin.Length + i).gameObject;
         }
         for (int i = 0; i < _ButtonPositoin.Length; i++)
         {
             int rand = Random.Range(0, _RandomPosList.Count);
-            _ButtonPositoin[_RandomPosList[rand]].transform.position = _Button[i].transform.position;
+            _Button[i].transform.position  = _ButtonPositoin[_RandomPosList[rand]].transform.position;
             _RandomPosList.RemoveAt(rand);
         }
     }
