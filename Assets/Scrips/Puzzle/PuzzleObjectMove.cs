@@ -27,6 +27,10 @@ public class PuzzleObjectMove : Thorn
         {
             Rotate();
         }
+        if (_isMove)
+        {
+            ThornMove();
+        }
     }
 
     public IEnumerator MoveStart()
@@ -36,6 +40,8 @@ public class PuzzleObjectMove : Thorn
         PuzzleManager.instance._puzzleObjects.SettingObject(movePattern);
         yield return new WaitForSeconds(5f); // + 조건
         _isRotate = false;
+        _isMove = true;
+        StartCoroutine(MoveStart());
     }
 
     private void Rotate()
@@ -48,7 +54,7 @@ public class PuzzleObjectMove : Thorn
     {  //일단 체크가 되야한다.
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(MoveStart());
+            
         }
     }
 

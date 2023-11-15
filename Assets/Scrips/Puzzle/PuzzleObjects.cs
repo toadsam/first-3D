@@ -90,8 +90,6 @@ public class PuzzleObjects : MonoBehaviour
                 default:
                     break;
             }
-
-
         }
         QuestionPattern();
     }

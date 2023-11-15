@@ -35,7 +35,6 @@ public class PatternSign : MonoBehaviour
     {
         _puzzleObjects = GetComponent<PuzzleObjects>();
         StartSetting();
-
     }
     void Start()
     {
@@ -49,7 +48,7 @@ public class PatternSign : MonoBehaviour
         
     }
 
-    public IEnumerator PatternChange()
+    public IEnumerator PatternChange()  //한번만 실행 시킬 수 있는 코루틴 만들어 보기
     {
         while (true)
         {
@@ -69,14 +68,10 @@ public class PatternSign : MonoBehaviour
         patterns[2] = pattern3;
         patterns[3] = pattern4;
         patterns[4] = pattern5;
-
-
     }
 
     public int[] AnswerPattern()
     {
         return patterns[_random];
     }
-
-
 }
