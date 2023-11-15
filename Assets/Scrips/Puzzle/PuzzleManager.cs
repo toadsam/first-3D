@@ -8,6 +8,7 @@ public class PuzzleManager : MonoBehaviour
     public PuzzleObjects _puzzleObjects;  //_puzzleObjects를 가져와서 관리를 용이하게 하고싶다.
     public PatternSign patternSign;
 
+    public bool isClear;
 
     void Awake()
     {
@@ -40,7 +41,7 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-    private bool CorrectAnswer()
+    public bool CorrectAnswer()
     {
         bool isRight = _puzzleObjects.QuestionPattern().SequenceEqual(patternSign.AnswerPattern());
         
