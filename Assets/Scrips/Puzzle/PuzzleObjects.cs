@@ -94,7 +94,6 @@ public class PuzzleObjects : MonoBehaviour
 
         }
         QuestionPattern();
-        Debug.Log(curPattern);
     }
 
     public int[] QuestionPattern()

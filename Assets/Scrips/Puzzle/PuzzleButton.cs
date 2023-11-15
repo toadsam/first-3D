@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PuzzleButton : MonoBehaviour
 {
-    private Transform[] _ButtonPositoin = new Transform[4];
-    private GameObject[] _Button = new GameObject[4];
-    private List<int> _RandomPosList = new List<int>() { 0, 1, 2, 3 };
+    private Transform[] _ButtonPositoin = new Transform[7];
+    private GameObject[] _Button = new GameObject[7];
+    private List<int> _RandomPosList = new List<int>() { 0, 1, 2, 3, 4, 5, 6};
     // Start is called before the first frame update
     void Start()
     {

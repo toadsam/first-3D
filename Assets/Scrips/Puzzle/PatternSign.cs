@@ -8,15 +8,15 @@ public class PatternSign : MonoBehaviour
 {
     private PuzzleObjects _puzzleObjects;
 
-    int[] pattern1 = { 0, 1, 2,
-                       0, 1, 2,
-                       0, 1, 2 };
+    int[] pattern1 = { 0, 0, 0,
+                       0, 1, 0,
+                       0, 0, 0 };
     int[] pattern2 ={ 1, 1, 2,
                       1, 1, 2,
                       1, 1, 2 };
-    int[] pattern3 ={ 0, 1, 2,
-                      0, 1, 2,
-                      0, 1, 2 };
+    int[] pattern3 ={ 0, 1, 0,
+                      1, 2, 1,
+                      0, 1, 0 };
     int[] pattern4 ={ 2, 1, 2,
                       2, 1, 2,
                       1, 2, 2 };
