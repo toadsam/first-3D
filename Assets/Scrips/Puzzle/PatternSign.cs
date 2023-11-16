@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PatternSign : MonoBehaviour
 {
-    private PuzzleObjects _puzzleObjects;
+    private PuzzleObjects puzzleObjects;
 
     int[] pattern1 = { 0, 0, 0,
                        0, 1, 0,
@@ -33,12 +33,12 @@ public class PatternSign : MonoBehaviour
 
     private void Awake()
     {
-        _puzzleObjects = GetComponent<PuzzleObjects>();
+        puzzleObjects = GetComponent<PuzzleObjects>();
         StartSetting();
     }
     void Start()
     {
-        //_puzzleObjects.SettingObject(patterns[0]);
+        //puzzleObjects.SettingObject(patterns[0]);
         StartCoroutine(PatternChange());
     }
 
@@ -48,15 +48,16 @@ public class PatternSign : MonoBehaviour
         
     }
 
-    public IEnumerator PatternChange()  //한번만 실행 시킬 수 있는 코루틴 만들어 보기
+    public IEnumerator PatternChange()  
     {
+        var deleyTime = new WaitForSeconds(5f);
         while (true)
         {
-            yield return new WaitForSeconds(5f); // + 조건
+            yield return deleyTime; // + 조건
             _random = UnityEngine.Random.Range(0, 5);
             Debug.Log(_random);
 
-            _puzzleObjects.SettingObject(patterns[_random]);
+            puzzleObjects.SettingObject(patterns[_random]);
             AnswerPattern();
         }
     }

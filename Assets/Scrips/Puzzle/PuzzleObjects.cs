@@ -21,22 +21,13 @@ public class PuzzleObjects : MonoBehaviour
 
     [SerializeField] private PuzzleType _puzzleType;
 
-    private GameObject[] _puzzleObjects = new GameObject[9];
+    private GameObject[] puzzleObjects = new GameObject[9];
 
     [Header("puzzleObject")]
-    private GameObject _puzzleObject0;
-    private GameObject _puzzleObject1;
-    private GameObject _puzzleObject2;
-    private GameObject _puzzleObject3;
-    private GameObject _puzzleObject4;
-    private GameObject _puzzleObject5;
-    private GameObject _puzzleObject6;
-    private GameObject _puzzleObject7;
-    private GameObject _puzzleObject8;
 
     int[] startQuestion = { 2, 2, 2,
-                2, 2, 2, 
-                2, 2, 2 };
+                            2, 2, 2, 
+                            2, 2, 2 };
     int[] curPattern = new int[9];
     // Start is called before the first frame update
     void Start()
@@ -52,9 +43,9 @@ public class PuzzleObjects : MonoBehaviour
 
     private void StartSetting()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)  //차일드 카운트니깐 예외처리는 딱히 상관없을 듯
         {
-            _puzzleObjects[i] = transform.GetChild(i).gameObject;
+            puzzleObjects[i] = transform.GetChild(i).gameObject;
 
         }
         SettingObject(startQuestion);
@@ -71,18 +62,18 @@ public class PuzzleObjects : MonoBehaviour
             switch (pattern[i])
             {
                 case (int)GameObjectType.No:
-                    _puzzleObjects[i].transform.GetChild(0).gameObject.SetActive(false);
-                    _puzzleObjects[i].transform.GetChild(1).gameObject.SetActive(false);
+                    puzzleObjects[i].transform.GetChild(0).gameObject.SetActive(false);  //이친구들을 아예다 스타트에서 넣고 시작해보자.
+                    puzzleObjects[i].transform.GetChild(1).gameObject.SetActive(false);
                     curPattern[i] = (int)GameObjectType.No;
                     break;
                 case (int)GameObjectType.Ice:
-                    _puzzleObjects[i].transform.GetChild(0).gameObject.SetActive(true);
-                    _puzzleObjects[i].transform.GetChild(1).gameObject.SetActive(false);
+                    puzzleObjects[i].transform.GetChild(0).gameObject.SetActive(true);
+                    puzzleObjects[i].transform.GetChild(1).gameObject.SetActive(false);
                     curPattern[i] = (int)GameObjectType.Ice;
                     break;
                 case (int)GameObjectType.Water:
-                    _puzzleObjects[i].transform.GetChild(0).gameObject.SetActive(false);
-                    _puzzleObjects[i].transform.GetChild(1).gameObject.SetActive(true);
+                    puzzleObjects[i].transform.GetChild(0).gameObject.SetActive(false);
+                    puzzleObjects[i].transform.GetChild(1).gameObject.SetActive(true);
                     curPattern[i] = (int)GameObjectType.Water;
                     break;
                 case (int)GameObjectType.Nothing:
