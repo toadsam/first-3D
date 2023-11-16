@@ -1,78 +1,68 @@
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class PatternSign : MonoBehaviour
 {
-    private PuzzleObjects puzzleObjects;
+    private PuzzleObjects _puzzleObjects;
 
-    int[] pattern1 = { 0, 0, 0,
-                       0, 1, 0,
-                       0, 0, 0 };
-    int[] pattern2 ={ 1, 1, 2,
-                      1, 1, 2,
-                      1, 1, 2 };
-    int[] pattern3 ={ 0, 1, 0,
-                      1, 2, 1,
-                      0, 1, 0 };
-    int[] pattern4 ={ 2, 1, 2,
-                      2, 1, 2,
-                      1, 2, 2 };
-    int[] pattern5 ={ 1, 1, 1,
-                      1, 1, 1,
-                      1, 1, 1 };
+    [Header("patterns")]
+
+    private int[] _pattern1 = {0, 0, 0,
+                               0, 1, 0,
+                               0, 0, 0 };
+    private int[] _pattern2 ={ 1, 1, 2,
+                               1, 1, 2,
+                               1, 1, 2 };
+    private int[] _pattern3 ={ 0, 1, 0,
+                               1, 2, 1,
+                               0, 1, 0 };
+    private int[] _pattern4 ={ 2, 1, 2,
+                               2, 1, 2,
+                               1, 2, 2 };
+    private int[] _pattern5 ={ 1, 1, 1,
+                               1, 1, 1,
+                               1, 1, 1 };
 
 
-    int[][] patterns = new int[5][];
+    private int[][] _patterns = new int[5][];
 
-    bool isCheak;
     private int _random;
-    // Start is called before the first frame update
 
     private void Awake()
     {
-        puzzleObjects = GetComponent<PuzzleObjects>();
+        _puzzleObjects = GetComponent<PuzzleObjects>();
         StartSetting();
     }
-    void Start()
+    private void Start()
     {
-        //puzzleObjects.SettingObject(patterns[0]);
         StartCoroutine(PatternChange());
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public IEnumerator PatternChange()  
     {
-        var deleyTime = new WaitForSeconds(5f);
+        var deleyTime = new WaitForSeconds(5f);  //무한 코루틴이기 때문에 가비지를 줄이기 위해서 변수를 초기화 시켜서 사용했습니다.
         while (true)
         {
             yield return deleyTime; // + 조건
             _random = UnityEngine.Random.Range(0, 5);
             Debug.Log(_random);
 
-            puzzleObjects.SettingObject(patterns[_random]);
+            _puzzleObjects.SettingObject(_patterns[_random]);
             AnswerPattern();
         }
     }
 
-    private void StartSetting()
+    private void StartSetting()  //for문으로 한번에 넣고 싶은데 방법을 못 찾겠습니다. ㅠㅠ
     {
-        patterns[0] = pattern1;
-        patterns[1] = pattern2;
-        patterns[2] = pattern3;
-        patterns[3] = pattern4;
-        patterns[4] = pattern5;
+        _patterns[0] = _pattern1;
+        _patterns[1] = _pattern2;
+        _patterns[2] = _pattern3;
+        _patterns[3] = _pattern4;
+        _patterns[4] = _pattern5;
     }
 
     public int[] AnswerPattern()
     {
-        return patterns[_random];
+        return _patterns[_random];
     }
 }

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class PatternTime : MonoBehaviour
@@ -25,7 +24,7 @@ public class PatternTime : MonoBehaviour
         if (_timeLeft > 0)
         {
             _timeLeft -= Time.deltaTime;
-            transform.localScale = new Vector3(8 * (_timeLeft / _maxTime), 1, 0.1f);
+            transform.localScale = new Vector3(8 * (_timeLeft / _maxTime), 0.1f, 1f);
         }
         else
         {

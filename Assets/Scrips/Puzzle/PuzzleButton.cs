@@ -1,4 +1,4 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,21 +7,19 @@ public class PuzzleButton : MonoBehaviour
     private Transform[] _ButtonPositoin = new Transform[7];
     private GameObject[] _Button = new GameObject[7];
     private List<int> _RandomPosList = new List<int>() { 0, 1, 2, 3, 4, 5, 6};
-    // Start is called before the first frame update
-    void Start()
+    
+    private void Start()
     {
         StartSetting();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void StartSetting()
     {
        for(int i = 0; i < _ButtonPositoin.Length; i++) 
         {
+            if (transform.GetChild(i).gameObject == null && transform.GetChild(_ButtonPositoin.Length + i).gameObject == null)  //예외처리 해봤는데 이런식으로 하는게 맞는지...ㅠㅠ
+                return;
+                        
             _ButtonPositoin[i] = transform.GetChild(i).gameObject.transform;
             _Button[i] = transform.GetChild(_ButtonPositoin.Length + i).gameObject;
         }

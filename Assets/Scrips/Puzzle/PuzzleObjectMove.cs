@@ -1,26 +1,60 @@
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class PuzzleObjectMove : Thorn
 {
+    [Header("MoveBool")]
     private bool _isRotate;
     private bool _isMove;
-    private int[] movePattern = { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
     private int _isResolve;
-    //퍼즐 매니저의 불값이 결정한다. ㅎㅎ
-    // Start is called before the first frame update
-    void Start()
+
+    private int[] _movePattern = { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+   
+    private void Start() //상속을 통해서 이 친구가 없으면 위치가 순간이동하기 때문에 없앨수가 없다.....ㅠㅠ
     {
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (PuzzleManager.instance.CorrectAnswer())
+
+        ClearMove();
+    }
+
+    public IEnumerator MoveStart() //한번만 실행 시킬 수 있는 코루틴 만들어 보기
+    {
+        _isRotate = true;
+        yield return new WaitForSeconds(1f); 
+        PuzzleManager.instance.puzzleObjects.SettingObject(_movePattern);
+        yield return new WaitForSeconds(5f); 
+        _isRotate = false;
+        _isMove = true;
+    }
+
+    private void Rotate()
+    {
+        transform.Rotate(Vector3.up * Time.deltaTime * 500, Space.World);
+    }
+
+    private void OnCollisionEnter(Collision collision)   //이거 플레이어의null값 한번 알아보기
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.transform.SetParent(transform);
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.transform.SetParent(null);
+        }
+    }
+
+    private void ClearMove()
+    {
+         if (PuzzleManager.instance.CorrectAnswer())
         {
             if (_isResolve == 0)
             {
@@ -35,37 +69,6 @@ public class PuzzleObjectMove : Thorn
         if (_isMove)
         {
             ThornMove();
-        }
-    }
-
-    public IEnumerator MoveStart() //한번만 실행 시킬 수 있는 코루틴 만들어 보기
-    {
-        _isRotate = true;
-        yield return new WaitForSeconds(1f); // + 조건
-        PuzzleManager.instance.puzzleObjects.SettingObject(movePattern);
-        yield return new WaitForSeconds(5f); // + 조건
-        _isRotate = false;
-        _isMove = true;
-    }
-
-    private void Rotate()
-    {
-        transform.Rotate(Vector3.up * Time.deltaTime * 500, Space.World);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("adw");
-            collision.gameObject.transform.SetParent(transform);
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.transform.SetParent(null);
         }
     }
 

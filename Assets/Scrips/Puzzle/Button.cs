@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public enum ButtonType  //여기서 필요한 아이템을 추가하면 됩니다 일단은 정해진 오브젝트가 없기 때문에 알파벳으로 두웠습니다.
@@ -65,7 +64,7 @@ public class Button : MonoBehaviour
         }
     }
 
-    private void ThreeChangePuzzle(int[]cur,int one,int two,int three )
+    private void ThreeChangePuzzle(int[]cur,int one,int two,int three )  //그냥 편하게 일반 메서드로 묶었다
     {
         cur[one] += 1;
         cur[two] += 1;
@@ -78,4 +77,5 @@ public class Button : MonoBehaviour
             cur[three] = 0;
 
     }
+
 }
